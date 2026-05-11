@@ -1,0 +1,26 @@
+{
+  "attorney": {
+    "image": "/head/1.png",
+    "height": "37vh"
+  },
+  "attorney-id": {
+    "image": "/head/2.png",
+    "height": "45vh"
+  },
+  "article": {
+    "image": "/head/4.png",
+    "height": "40vh"
+  },
+  "article-slug": {
+    "image": "/head/5.png",
+    "height": "30vh"
+  },
+  "practice-areas": {
+    "image": "/head/7.png",
+    "height": "25vh"
+  },
+  "practice-areas-slug": {
+    "image": "/head/7.png",
+    "height": "25vh"
+  }
+}

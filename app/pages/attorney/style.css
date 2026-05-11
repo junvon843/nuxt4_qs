@@ -1,0 +1,136 @@
+.lawyer-list {
+  padding: 60px 0;
+}
+
+.lawyer-list__header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.lawyer-list__title {
+  font-size: 32px;
+  font-weight: 700;
+  color:#ffffff;
+  margin-bottom: 12px;
+}
+
+.lawyer-list__subtitle {
+  font-size: 16px;
+  color:#ffffff;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* ---- 工具栏 ---- */
+.lawyer-list__toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.lawyer-list__filters {
+  display: flex;
+  gap: 20px;
+}
+
+.filter-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.filter-label {
+  font-size: 14px;
+  color:#ffffff;
+}
+
+.filter-select {
+  padding: 6px 12px;
+  border: 1px solid var(--qs-color-border);
+  border-radius: var(--qs-radius);
+  font-size: 14px;
+  background: var(--qs-color-surface);
+  color: var(--qs-color-text);
+  cursor: pointer;
+}
+
+/* ---- 布局切换 ---- */
+.lawyer-list__layout-toggle {
+  display: flex;
+  gap: 8px;
+}
+
+.toggle-btn {
+  padding: 6px 16px;
+  border: 1px solid var(--qs-color-border);
+  background: var(--qs-color-surface);
+  color: var(--qs-color-text-secondary);
+  border-radius: var(--qs-radius);
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.2s;
+}
+
+.toggle-btn--active {
+  background: var(--qs-color-teal-900);
+  color: #fff;
+  border-color: var(--qs-color-teal-900);
+}
+
+/* ---- 统计 ---- */
+.lawyer-list__count {
+  font-size: 14px;
+  color:#ffffff;
+  margin-bottom: 24px;
+}
+
+.lawyer-list__count strong {
+  color: var(--qs-color-teal-900);
+}
+
+/* ---- 卡片容器：列表模式 ---- */
+.lawyer-list__grid--list {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* ---- 卡片容器：网格模式 ---- */
+.lawyer-list__grid--grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+/* 响应式：平板 2 列 */
+@media (max-width: 992px) {
+  .lawyer-list__grid--grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* 响应式：手机 1 列 */
+@media (max-width: 768px) {
+  .lawyer-list__grid--grid {
+    grid-template-columns: 1fr;
+  }
+
+  .lawyer-list__toolbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+/* ---- 空状态 ---- */
+.lawyer-list__empty {
+  text-align: center;
+  padding: 60px 0;
+  color: var(--qs-color-text-secondary);
+}
+
+.lawyer-list__empty.error {
+  color: #c0392b;
+}

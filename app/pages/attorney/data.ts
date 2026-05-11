@@ -1,0 +1,46 @@
+/**
+ * data.ts
+ * ============
+ * 律师数据类型定义
+ * 数据由后端 API 提供 (/api/firm/attorneys/)
+ */
+
+/** 律师专业领域 */
+export interface PracticeArea {
+  /** 领域名称，如 "公司法" */
+  name: string
+}
+
+/** 律师单条数据模型 */
+export interface Lawyer {
+  /** 唯一标识（来自数据库主键） */
+  id: number
+  /** 姓名 */
+  name: string
+  /** 头像图片路径 */
+  avatar: string
+  /** 头像图片路径（旧字段兼容） */
+  image_url?: string
+  /** 职位/头衔 */
+  title: string
+  /** 办公室地点 */
+  office: string
+  /** 专业领域列表 */
+  practice_areas: PracticeArea[]
+  /** 个人简介 */
+  bio: string
+  /** 邮箱 */
+  email: string
+  /** 电话 */
+  phone: string
+  /** 是否为重点推荐（用于样式区分） */
+  featured?: boolean
+  /** 排序权重 */
+  sort_order: number
+  /** 是否启用 */
+  is_active: boolean
+  /** 创建时间 */
+  created_at: string
+  /** 更新时间 */
+  updated_at: string
+}
