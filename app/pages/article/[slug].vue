@@ -13,17 +13,43 @@ const article = computed(() => {
   return articles.value.find((a) => a.slug === slug) || null
 })
 
-useHead({
-  title: computed(() =>
-    article.value?.title
-      ? article.value.title + ' - 北京青颂律师事务所'
-      : '文章详情',
-  ),
+useSeoMeta({
+  title: () => article.value?.title ? article.value.title + ' - 北京青颂律师事务所' : '文章详情',
+  description: () => article.value?.lead ? article.value.lead.slice(0, 160) : '青颂律师事务所专业文章',
+  ogTitle: () => article.value?.title ? article.value.title + ' - 北京青颂律师事务所' : '文章详情',
+  ogDescription: () => article.value?.lead ? article.value.lead.slice(0, 160) : '青颂律师事务所专业文章',
+  ogImage: 'https://qs-legal.com/head/5.png',
+  ogUrl: () => 'https://qs-legal.com/article/' + route.params.slug,
+  twitterCard: 'summary_large_image',
 })
+
+useSchemaOrg(() =>
+  article.value
+    ? [
+        defineArticle({
+          headline: article.value.title,
+          description: article.value.lead,
+          author: {
+            '@type': 'Organization',
+            name: article.value.meta.author || '青颂律师事务所',
+          },
+          datePublished: article.value.meta.date,
+          dateModified: article.value.meta.date,
+          image: 'https://qs-legal.com/head/5.png',
+          publisher: {
+            '@type': 'Organization',
+            name: '北京青颂律师事务所',
+            url: 'https://qs-legal.com',
+          },
+        }),
+      ]
+    : [],
+)
 </script>
 
 <template>
   <div v-if="article">
+    <BreadcrumbNav :items="[{ label: '首页', href: '/' }, { label: '专业文章', href: '/article' }, { label: article.title }]" />
     <header class="article-header">
       <div class="qs-container">
         <h1 class="article-header__title">{{ article.title }}</h1>

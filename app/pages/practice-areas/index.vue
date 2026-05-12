@@ -10,20 +10,21 @@ function goDetail(slug: string) {
   navigateTo('/practice-areas/' + slug)
 }
 
-useHead({
+useSeoMeta({
   title: '专业领域 - 北京青颂律师事务所',
-  meta: [
-    {
-      name: 'description',
-      content: '青颂律师事务所专注商事法律领域，涵盖涉外法律咨询、争议解决、执行领域及体育法律服务。',
-    },
-  ],
+  description: '青颂律师事务所专注商事法律领域，涵盖涉外法律咨询、争议解决、执行领域及体育法律服务。',
+  ogTitle: '专业领域 - 北京青颂律师事务所',
+  ogDescription: '青颂律师事务所专注商事法律领域，涵盖涉外法律咨询、争议解决、执行领域及体育法律服务。',
+  ogImage: 'https://qs-legal.com/head/7.png',
+  ogUrl: 'https://qs-legal.com/practice-areas',
+  twitterCard: 'summary_large_image',
 })
 </script>
 
 <template>
   <section class="pa-list">
     <div class="qs-container">
+      <BreadcrumbNav :items="[{ label: '首页', href: '/' }, { label: '专业领域' }]" />
       <header class="pa-list__header">
         <h1 class="pa-list__title">专业领域</h1>
         <p class="pa-list__subtitle">

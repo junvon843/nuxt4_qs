@@ -11,11 +11,14 @@ import {
   esgData,
 } from './home/data'
 
-useHead({
+useSeoMeta({
   title: '北京青颂律师事务所 - 专注商事争议解决',
-  meta: [
-    { name: 'description', content: '北京青颂律师事务所成立于2004年，是一家公司化运营的精品律师事务所，专注涉外法律咨询、争议解决、执行领域及体育法律服务。' }
-  ]
+  description: '北京青颂律师事务所成立于2004年，是一家公司化运营的精品律师事务所，专注涉外法律咨询、争议解决、执行领域及体育法律服务。',
+  ogTitle: '北京青颂律师事务所 - 专注商事争议解决',
+  ogDescription: '北京青颂律师事务所成立于2004年，是一家公司化运营的精品律师事务所，专注涉外法律咨询、争议解决、执行领域及体育法律服务。',
+  ogImage: 'https://qs-legal.com/about/about_us/heading.png',
+  ogUrl: 'https://qs-legal.com/',
+  twitterCard: 'summary_large_image',
 })
 
 const activeImpactTab = ref(0)
@@ -100,7 +103,7 @@ const handle_service_click = (i: number) => {
   else if (cls === 'prev') prev_service()
   else if (cls === 'active') {
     const item = serviceCarouselItems[i]
-    if (item.link) window.open(item.link, '_self')
+    if (item?.link) window.open(item.link, '_self')
   }
 }
 
@@ -145,8 +148,8 @@ onUnmounted(() => {
         <div class="slogan-box">
           <transition name="text" mode="out-in">
             <div :key="active_index">
-              <div class="slogan-line">{{ slides[active_index].title }}</div>
-              <div class="slogan-line slogan-line--sub">{{ slides[active_index].subtitle }}</div>
+              <div class="slogan-line">{{ slides[active_index]?.title }}</div>
+              <div class="slogan-line slogan-line--sub">{{ slides[active_index]?.subtitle }}</div>
             </div>
           </transition>
         </div>
@@ -189,7 +192,8 @@ onUnmounted(() => {
         <div class="slide-content">
           <div class="category">{{ item.category }}</div>
           <h2 class="title">{{ item.title }}</h2>
-          <a class="read-more" :href="item.link" @click.stop>READ MORE</a>
+          <span v-if="item.link === '#'" class="read-more">READ MORE</span>
+        <a v-else class="read-more" :href="item.link" @click.stop>READ MORE</a>
         </div>
       </div>
     </section>

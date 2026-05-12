@@ -116,23 +116,24 @@ onMounted(() => {
 // SEO
 // ----------------------------------------
 
-useHead({
+useSeoMeta({
   title: '专业人员 - 北京青颂律师事务所',
-  meta: [
-    {
-      name: 'description',
-      content: '青颂律师事务所专业律师团队，覆盖涉外法律咨询、争议解决、执行领域及体育法律服务。',
-    },
-  ],
+  description: '青颂律师事务所专业律师团队，覆盖涉外法律咨询、争议解决、执行领域及体育法律服务。',
+  ogTitle: '专业人员 - 北京青颂律师事务所',
+  ogDescription: '青颂律师事务所专业律师团队，覆盖涉外法律咨询、争议解决、执行领域及体育法律服务。',
+  ogImage: 'https://qs-legal.com/head/1.png',
+  ogUrl: 'https://qs-legal.com/attorney',
+  twitterCard: 'summary_large_image',
 })
 </script>
 
 <template>
   <section class="lawyer-list">
     <div class="qs-container">
+      <BreadcrumbNav :items="[{ label: '首页', href: '/' }, { label: '专业人员' }]" />
       <!-- 页面标题 -->
       <header class="lawyer-list__header">
-        <h2 class="lawyer-list__title">专业人员</h2>
+        <h1 class="lawyer-list__title">专业人员</h1>
         <p class="lawyer-list__subtitle">
           我们拥有一支由资深律师组成的专业团队，覆盖多个核心执业领域
         </p>

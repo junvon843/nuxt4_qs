@@ -45,17 +45,44 @@ function scrollToSection(key: string) {
 
 onMounted(fetchLawyer)
 
-useHead({
-  title: computed(() =>
-    lawyer.value?.name ? lawyer.value.name + ' - 北京青颂律师事务所' : '律师详情'
-  ),
+useSeoMeta({
+  title: () => lawyer.value?.name ? lawyer.value.name + ' - 北京青颂律师事务所' : '律师详情',
+  description: () => lawyer.value?.bio ? lawyer.value.bio.slice(0, 160) : '青颂律师事务所专业律师详情',
+  ogTitle: () => lawyer.value?.name ? lawyer.value.name + ' - 北京青颂律师事务所' : '律师详情',
+  ogDescription: () => lawyer.value?.bio ? lawyer.value.bio.slice(0, 160) : '青颂律师事务所专业律师详情',
+  ogImage: () => lawyer.value?.avatar ? 'https://qs-legal.com' + lawyer.value.avatar : 'https://qs-legal.com/head/2.png',
+  ogUrl: () => 'https://qs-legal.com/attorney/' + route.params.id,
+  twitterCard: 'summary_large_image',
 })
+
+useSchemaOrg(() =>
+  lawyer.value
+    ? [
+        definePerson({
+          name: lawyer.value.name,
+          jobTitle: lawyer.value.title,
+          description: lawyer.value.bio,
+          image: lawyer.value.avatar
+            ? 'https://qs-legal.com' + lawyer.value.avatar
+            : undefined,
+          email: lawyer.value.email,
+          telephone: lawyer.value.phone,
+          worksFor: {
+            '@type': 'Organization',
+            name: '北京青颂律师事务所',
+            url: 'https://qs-legal.com',
+          },
+        }),
+      ]
+    : [],
+)
 </script>
 
 <template>
   <div v-if="loading" class="lawyer-detail__loading">加载中…</div>
   <div v-else-if="errorMsg" class="lawyer-detail__error">{{ errorMsg }}</div>
   <div v-else-if="lawyer" class="lawyer-detail">
+    <BreadcrumbNav :items="[{ label: '首页', href: '/' }, { label: '专业人员', href: '/attorney' }, { label: lawyer.name }]" />
     <!-- 顶部 Hero -->
     <section class="lawyer-hero">
       <div class="qs-container lawyer-hero__inner">

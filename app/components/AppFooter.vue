@@ -3,11 +3,11 @@ const footerData = {
   brand: '北京青颂律师事务所',
   copyright: '© 2026',
   socials: [
-    { label: 'LinkedIn', href: '#' },
-    { label: 'YouTube', href: '#' },
-    { label: 'Instagram', href: '#' },
-    { label: 'Facebook', href: '#' },
-    { label: 'Twitter', href: '#' },
+    { label: 'LinkedIn' },
+    { label: 'YouTube' },
+    { label: 'Instagram' },
+    { label: 'Facebook' },
+    { label: 'Twitter' },
   ],
 }
 </script>
@@ -20,15 +20,13 @@ const footerData = {
         <div class="copy">{{ footerData.copyright }}</div>
       </div>
       <div class="right">
-        <a
+        <span
           v-for="s in footerData.socials"
           :key="s.label"
           class="social"
-          :href="s.href"
-          @click.prevent
         >
           {{ s.label }}
-        </a>
+        </span>
       </div>
     </div>
   </footer>

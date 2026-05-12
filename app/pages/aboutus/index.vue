@@ -2,11 +2,14 @@
 definePageMeta({ layout: 'plain' })
 import { onMounted } from 'vue'
 
-useHead({
+useSeoMeta({
   title: '关于我们 - 北京青颂律师事务所',
-  meta: [
-    { name: 'description', content: '北京青颂律师事务所成立于2004年，是一家公司化运营的精品律师事务所，专注涉外法律咨询、争议解决、执行领域及体育法律服务。' }
-  ]
+  description: '北京青颂律师事务所成立于2004年，是一家公司化运营的精品律师事务所，专注涉外法律咨询、争议解决、执行领域及体育法律服务。',
+  ogTitle: '关于我们 - 北京青颂律师事务所',
+  ogDescription: '北京青颂律师事务所成立于2004年，是一家公司化运营的精品律师事务所，专注涉外法律咨询、争议解决、执行领域及体育法律服务。',
+  ogImage: 'https://qs-legal.com/about/about_us/heading.png',
+  ogUrl: 'https://qs-legal.com/aboutus',
+  twitterCard: 'summary_large_image',
 })
 
 onMounted(() => {
@@ -347,7 +350,7 @@ function scrollToAnchor(selector: string) {
       <div class="qs-container">
         <h2>成为您最信赖的合作伙伴</h2>
         <p>凭借着卓越的业务水平和真诚奋进的服务态度，青颂期待与您携手共进，共创未来。</p>
-        <a href="#" class="cta-btn">联系我们</a>
+        <button type="button" class="cta-btn" onclick="alert('联系功能即将上线')">联系我们</button>
       </div>
     </section>
   </div>

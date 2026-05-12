@@ -19,20 +19,21 @@ function goDetail(slug: string) {
   navigateTo(`/article/${slug}`)
 }
 
-useHead({
+useSeoMeta({
   title: '专业文章 - 北京青颂律师事务所',
-  meta: [
-    {
-      name: 'description',
-      content: '青颂律师事务所专业团队撰写的法律实务文章，涵盖商事争议解决、涉外法律等多个领域。',
-    },
-  ],
+  description: '青颂律师事务所专业团队撰写的法律实务文章，涵盖商事争议解决、涉外法律等多个领域。',
+  ogTitle: '专业文章 - 北京青颂律师事务所',
+  ogDescription: '青颂律师事务所专业团队撰写的法律实务文章，涵盖商事争议解决、涉外法律等多个领域。',
+  ogImage: 'https://qs-legal.com/head/4.png',
+  ogUrl: 'https://qs-legal.com/article',
+  twitterCard: 'summary_large_image',
 })
 </script>
 
 <template>
   <section class="article-list">
     <div class="qs-container">
+      <BreadcrumbNav :items="[{ label: '首页', href: '/' }, { label: '专业文章' }]" />
       <header class="article-list__header">
         <h1 class="article-list__title">专业文章</h1>
         <p class="article-list__subtitle">

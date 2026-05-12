@@ -56,6 +56,10 @@ function scrollToId(id: string) {
 const progress = ref(0)
 const showTop = ref(false)
 
+function scrollToTop() {
+  window.scrollTo({ top: 0, behavior: 'smooth' })
+}
+
 onMounted(() => {
   window.addEventListener('scroll', onScroll, { passive: true })
   nextTick(onScroll)
@@ -87,14 +91,15 @@ function isLawTitle(block: ArticleBlock) {
     <aside class="art-sidebar">
       <div class="art-sidebar__title">目录导航</div>
       <nav class="art-toc">
-        <a
+        <button
           v-for="item in tocHeadings"
           :key="item.id"
+          type="button"
           :class="{ 'art-toc__link': true, 'is-active': activeId === item.id, 'is-h3': item.level === 3 }"
-          @click.prevent="scrollToId(item.id)"
+          @click="scrollToId(item.id)"
         >
           {{ item.text }}
-        </a>
+        </button>
       </nav>
     </aside>
 
@@ -180,7 +185,7 @@ function isLawTitle(block: ArticleBlock) {
   <button
     class="art-backtop"
     :class="{ 'is-visible': showTop }"
-    @click="window.scrollTo({ top: 0, behavior: 'smooth' })"
+    @click="scrollToTop()"
   >
     ↑
   </button>
@@ -239,14 +244,19 @@ function isLawTitle(block: ArticleBlock) {
 }
 .art-toc__link {
   display: block;
+  width: 100%;
+  text-align: left;
   padding: 0.5rem 0.75rem;
   border-radius: 6px;
   font-size: 0.875rem;
   color: var(--qs-color-text-secondary);
   cursor: pointer;
   transition: all 0.2s;
+  border: none;
   border-left: 2px solid transparent;
   text-decoration: none;
+  background: transparent;
+  font-family: inherit;
 }
 .art-toc__link:hover {
   background: var(--qs-color-bg);

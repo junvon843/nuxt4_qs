@@ -39,6 +39,10 @@ function scrollTo(id: string) {
   if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' })
 }
 
+function scrollToTop() {
+  window.scrollTo({ top: 0, behavior: 'smooth' })
+}
+
 function onScroll() {
   const sy = window.scrollY
   showTop.value = sy > 500
@@ -57,17 +61,20 @@ onMounted(() => {
 })
 onUnmounted(() => window.removeEventListener('scroll', onScroll))
 
-useHead({
-  title: computed(() =>
-    practice.value?.name
-      ? practice.value.name + ' - 北京青颂律师事务所'
-      : '专业领域详情'
-  ),
+useSeoMeta({
+  title: () => practice.value?.name ? practice.value.name + ' - 北京青颂律师事务所' : '专业领域详情',
+  description: () => practice.value?.overview?.[0] ? practice.value.overview[0].slice(0, 160) : '青颂律师事务所专业领域详情',
+  ogTitle: () => practice.value?.name ? practice.value.name + ' - 北京青颂律师事务所' : '专业领域详情',
+  ogDescription: () => practice.value?.overview?.[0] ? practice.value.overview[0].slice(0, 160) : '青颂律师事务所专业领域详情',
+  ogImage: 'https://qs-legal.com/head/7.png',
+  ogUrl: () => 'https://qs-legal.com/practice-areas/' + route.params.slug,
+  twitterCard: 'summary_large_image',
 })
 </script>
 
 <template>
   <div v-if="practice" class="practice-detail">
+    <BreadcrumbNav :items="[{ label: '首页', href: '/' }, { label: '专业领域', href: '/practice-areas' }, { label: practice.name }]" />
     <header class="pa-header">
       <div class="qs-container">
         <h1 class="pa-header__title">{{ practice.name }}</h1>
@@ -79,14 +86,15 @@ useHead({
       <aside class="pa-nav">
         <div class="pa-nav__title">目录</div>
         <nav class="pa-nav__list">
-          <a
+          <button
             v-for="item in navItems"
             :key="item.id"
+            type="button"
             :class="{ 'is-active': activeId === item.id }"
-            @click.prevent="scrollTo(item.id)"
+            @click="scrollTo(item.id)"
           >
             {{ item.label }}
-          </a>
+          </button>
         </nav>
       </aside>
 
@@ -134,7 +142,7 @@ useHead({
     <button
       class="pa-backtop"
       :class="{ 'is-visible': showTop }"
-      @click="window.scrollTo({ top: 0, behavior: 'smooth' })"
+      @click="scrollToTop()"
     >
       ↑
     </button>
@@ -196,22 +204,27 @@ useHead({
   flex-direction: column;
   gap: 0.25rem;
 }
-.pa-nav__list a {
+.pa-nav__list button {
   display: block;
+  width: 100%;
+  text-align: left;
   padding: 0.6rem 0.75rem;
   border-radius: 6px;
   font-size: 0.9rem;
   color: var(--qs-color-text-secondary);
   cursor: pointer;
   transition: all 0.2s;
+  border: none;
   border-left: 3px solid transparent;
   text-decoration: none;
+  background: transparent;
+  font-family: inherit;
 }
-.pa-nav__list a:hover {
+.pa-nav__list button:hover {
   background: var(--qs-color-bg);
   color: var(--qs-color-teal-900);
 }
-.pa-nav__list a.is-active {
+.pa-nav__list button.is-active {
   background: #f0f4f8;
   color: var(--qs-color-teal-900);
   border-left-color: var(--qs-color-brand);
@@ -353,7 +366,7 @@ useHead({
     flex-wrap: wrap;
     gap: 0.5rem;
   }
-  .pa-nav__list a {
+  .pa-nav__list button {
     border-left: none;
     border: 1px solid var(--qs-color-border);
     white-space: nowrap;
