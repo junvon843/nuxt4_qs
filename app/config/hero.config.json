@@ -9,7 +9,7 @@
   },
   "article": {
     "image": "/head/4.png",
-    "height": "40vh"
+    "height": "45vh"
   },
   "article-slug": {
     "image": "/head/5.png",
@@ -21,7 +21,7 @@
   },
   "practice-areas-slug": {
     "image": "/head/7.png",
-    "height": "25vh"
+    "height": "35vh"
   },
   "test": {
     "image": "/head/1.png",
