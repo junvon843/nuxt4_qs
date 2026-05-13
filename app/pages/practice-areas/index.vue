@@ -22,10 +22,11 @@ useSeoMeta({
 </script>
 
 <template>
-  <section class="pa-list">
-    <div class="qs-container">
-      <BreadcrumbNav :items="[{ label: '首页', href: '/' }, { label: '专业领域' }]" />
-      <header class="pa-list__header">
+  <div class="pa-page">
+    <BreadcrumbBar :items="[{ label: '首页', href: '/' }, { label: '专业领域' }]" />
+    <section class="pa-list">
+      <div class="qs-container">
+        <header class="pa-list__header">
         <h1 class="pa-list__title">专业领域</h1>
         <p class="pa-list__subtitle">
           青颂专注商事法律领域，为客户提供专业、务实的法律服务
@@ -46,6 +47,13 @@ useSeoMeta({
       </div>
     </div>
   </section>
+</div>
 </template>
 
 <style scoped src="./style.css"></style>
+
+<style scoped>
+.pa-page {
+  position: relative;
+}
+</style>

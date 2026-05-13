@@ -4,7 +4,7 @@
  * LawyerList.vue
  * =============
  * 律师列表页面：
- * - 从后端 API 获取律师数据
+ * - 从静态 JSON 获取律师数据
  * - 动态加载筛选选项
  * - 用 v-for 循环渲染多个 LawyerCard
  * - 处理 LawyerCard 抛出的事件
@@ -62,30 +62,23 @@ const filteredLawyers = computed(() => {
 // API 请求
 // ----------------------------------------
 
-async function fetchLawyers() {
+async function fetchData() {
   loading.value = true
   errorMsg.value = ''
   try {
-    const res = await $fetch<Lawyer[]>('/api/firm/attorneys/')
-    lawyers.value = res
+    const res = await $fetch<{
+      attorneys: Lawyer[]
+      offices: string[]
+      practice_areas: string[]
+    }>('/attorneys/data.json')
+    lawyers.value = res.attorneys
+    officeOptionsFromApi.value = res.offices
+    practiceAreaOptionsFromApi.value = res.practice_areas
   } catch (e) {
     errorMsg.value = '加载律师数据失败，请稍后重试'
     console.error(e)
   } finally {
     loading.value = false
-  }
-}
-
-async function fetchOptions() {
-  try {
-    const [officesRes, areasRes] = await Promise.all([
-      $fetch<{ offices: string[] }>('/api/firm/attorneys/offices/'),
-      $fetch<{ practice_areas: string[] }>('/api/firm/attorneys/practices/'),
-    ])
-    officeOptionsFromApi.value = officesRes.offices
-    practiceAreaOptionsFromApi.value = areasRes.practice_areas
-  } catch (e) {
-    console.error('加载筛选项失败', e)
   }
 }
 
@@ -108,8 +101,7 @@ function onSendEmail(email: string) {
 // ----------------------------------------
 
 onMounted(() => {
-  fetchLawyers()
-  fetchOptions()
+  fetchData()
 })
 
 // ----------------------------------------
@@ -128,10 +120,11 @@ useSeoMeta({
 </script>
 
 <template>
-  <section class="lawyer-list">
-    <div class="qs-container">
-      <BreadcrumbNav :items="[{ label: '首页', href: '/' }, { label: '专业人员' }]" />
-      <!-- 页面标题 -->
+  <div class="attorney-page">
+    <BreadcrumbBar :items="[{ label: '首页', href: '/' }, { label: '专业人员' }]" />
+    <section class="lawyer-list">
+      <div class="qs-container">
+        <!-- 页面标题 -->
       <header class="lawyer-list__header">
         <h1 class="lawyer-list__title">专业人员</h1>
         <p class="lawyer-list__subtitle">
@@ -222,6 +215,16 @@ useSeoMeta({
       </div>
     </div>
   </section>
+</div>
 </template>
 
 <style scoped src="./style.css"></style>
+
+<style scoped>
+.attorney-page {
+  position: relative;
+}
+.attorney-page .lawyer-list {
+  padding: 12px 0 60px;
+}
+</style>

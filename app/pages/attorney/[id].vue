@@ -25,8 +25,13 @@ async function fetchLawyer() {
   loading.value = true
   errorMsg.value = ''
   try {
-    const res = await $fetch<LawyerDetail>('/api/firm/attorneys/' + id + '/')
-    lawyer.value = res
+    const res = await $fetch<{
+      attorneys: LawyerDetail[]
+    }>('/attorneys/data.json')
+    lawyer.value = res.attorneys.find((a) => a.id === id) || null
+    if (!lawyer.value) {
+      errorMsg.value = '未找到该律师信息'
+    }
   } catch (e) {
     errorMsg.value = '加载律师数据失败，请稍后重试'
     console.error(e)
@@ -82,7 +87,7 @@ useSchemaOrg(() =>
   <div v-if="loading" class="lawyer-detail__loading">加载中…</div>
   <div v-else-if="errorMsg" class="lawyer-detail__error">{{ errorMsg }}</div>
   <div v-else-if="lawyer" class="lawyer-detail">
-    <BreadcrumbNav :items="[{ label: '首页', href: '/' }, { label: '专业人员', href: '/attorney' }, { label: lawyer.name }]" />
+    <BreadcrumbBar :items="[{ label: '首页', href: '/' }, { label: '专业人员', href: '/attorney' }, { label: lawyer.name }]" />
     <!-- 顶部 Hero -->
     <section class="lawyer-hero">
       <div class="qs-container lawyer-hero__inner">
@@ -212,6 +217,10 @@ useSchemaOrg(() =>
 </template>
 
 <style scoped>
+.lawyer-detail {
+  position: relative;
+}
+
 /* ---- Hero ---- */
 .lawyer-hero {
   color: #fff;

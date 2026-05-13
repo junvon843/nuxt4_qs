@@ -74,7 +74,7 @@ useSeoMeta({
 
 <template>
   <div v-if="practice" class="practice-detail">
-    <BreadcrumbNav :items="[{ label: '首页', href: '/' }, { label: '专业领域', href: '/practice-areas' }, { label: practice.name }]" />
+    <BreadcrumbBar :items="[{ label: '首页', href: '/' }, { label: '专业领域', href: '/practice-areas' }, { label: practice.name }]" />
     <header class="pa-header">
       <div class="qs-container">
         <h1 class="pa-header__title">{{ practice.name }}</h1>
@@ -158,6 +158,9 @@ useSeoMeta({
 
 <style scoped>
 /* Header */
+.practice-detail {
+  position: relative;
+}
 .pa-header {
   padding: 40px 0 16px;
   text-align: center;

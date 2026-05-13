@@ -51,7 +51,7 @@ useSchemaOrg(() =>
 
 <style scoped>
 .breadcrumb {
-  padding: 12px 0;
+  padding: 8px 0;
   font-size: 14px;
 }
 .breadcrumb__list {

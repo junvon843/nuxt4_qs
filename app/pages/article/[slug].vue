@@ -48,8 +48,8 @@ useSchemaOrg(() =>
 </script>
 
 <template>
-  <div v-if="article">
-    <BreadcrumbNav :items="[{ label: '首页', href: '/' }, { label: '专业文章', href: '/article' }, { label: article.title }]" />
+  <div v-if="article" class="article-detail-page">
+    <BreadcrumbBar :items="[{ label: '首页', href: '/' }, { label: '专业文章', href: '/article' }, { label: article.title }]" />
     <header class="article-header">
       <div class="qs-container">
         <h1 class="article-header__title">{{ article.title }}</h1>
@@ -70,6 +70,9 @@ useSchemaOrg(() =>
 </template>
 
 <style scoped>
+.article-detail-page {
+  position: relative;
+}
 .article-header {
   padding: 40px 0 24px;
   text-align: center;

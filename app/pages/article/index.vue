@@ -31,10 +31,11 @@ useSeoMeta({
 </script>
 
 <template>
-  <section class="article-list">
-    <div class="qs-container">
-      <BreadcrumbNav :items="[{ label: '首页', href: '/' }, { label: '专业文章' }]" />
-      <header class="article-list__header">
+  <div class="article-page">
+    <BreadcrumbBar :items="[{ label: '首页', href: '/' }, { label: '专业文章' }]" />
+    <section class="article-list">
+      <div class="qs-container">
+        <header class="article-list__header">
         <h1 class="article-list__title">专业文章</h1>
         <p class="article-list__subtitle">
           青颂律师事务所专业团队撰写的法律实务文章
@@ -68,6 +69,13 @@ useSeoMeta({
       <p v-if="!filtered.length" class="article-list__empty">没有找到相关文章</p>
     </div>
   </section>
+</div>
 </template>
 
 <style scoped src="./style.css"></style>
+
+<style scoped>
+.article-page {
+  position: relative;
+}
+</style>
