@@ -31,6 +31,7 @@ export default defineNuxtConfig({
   },
 
   sitemap: {
+    exclude: ['/test'],
     urls: async () => {
       // 静态文章 URL
       const urls = [...articleUrls]

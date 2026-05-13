@@ -6,32 +6,32 @@ export const heroData = {
 
 export const serviceCarouselItems = [
   {
-    id: 'take-private',
+    id: 'commercial-dispute',
     image: '/about/image1/7.jpg',
-    category: 'US$6.3 BILLION TAKE-PRIVATE',
-    title: 'Latham Advises Long Lake in Take-Private Acquisition of Amex Global Business Travel',
-    link: '#',
+    category: 'COMMERCIAL DISPUTE RESOLUTION',
+    title: 'QingSong Represents Listed Company in RMB 50M+ Share Repurchase Dispute, Securing Favorable Settlement',
+    link: '/practice-areas',
   },
   {
-    id: 'elite-capabilities',
+    id: 'cross-border-m&a',
     image: '/about/image1/8.jpg',
-    category: 'ELITE CAPABILITIES',
-    title: 'Esteemed Finance and Public M&A Partners Join Latham in New York',
-    link: '#',
+    category: 'CROSS-BORDER M&A',
+    title: 'QingSong Advises European Pharma Giant on Strategic Acquisition of Chinese Biotech Firm Valued at USD 120M',
+    link: '/practice-areas',
   },
   {
-    id: 'latam-financing',
+    id: 'sports-law',
     image: '/about/image1/5.jpg',
-    category: 'LANDMARK LATAM FINANCING',
-    title: 'Latham Advises Atlas Renewable Energy and GIP in Largest Refinancing in LatAm',
-    link: '#',
+    category: 'SPORTS & ENTERTAINMENT LAW',
+    title: 'QingSong Successfully Defends Premier League Club in Multi-Jurisdictional Player Transfer Arbitration',
+    link: '/practice-areas',
   },
   {
-    id: 'global-insights',
+    id: 'enforcement',
     image: '/pic_best/2.png',
-    category: 'GLOBAL INSIGHTS',
-    title: 'Navigating Regulatory Shifts in Cross-Border Transactions for 2026',
-    link: '#',
+    category: 'JUDGMENT ENFORCEMENT',
+    title: 'QingSong Recovers Over RMB 80M in Concealed Assets Through Innovative Cross-Regional Enforcement Strategy',
+    link: '/practice-areas',
   },
 ]
 
@@ -84,7 +84,7 @@ export const philosophyData = {
   description:
     '青颂始终秉持"客户至上、专业高效、勤勉尽责、开拓创新、合作共赢"的服务理念。我们相信，凭借着卓越的业务水平和真诚奋进的服务态度，青颂可以是您最信赖的合作伙伴之一。',
   ctaText: '进入我们的服务页',
-  ctaHref: '/service',
+  ctaHref: '/practice-areas',
 }
 
 export const advantageCards = [

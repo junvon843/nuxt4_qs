@@ -192,8 +192,8 @@ onUnmounted(() => {
         <div class="slide-content">
           <div class="category">{{ item.category }}</div>
           <h2 class="title">{{ item.title }}</h2>
-          <span v-if="item.link === '#'" class="read-more">READ MORE</span>
-        <a v-else class="read-more" :href="item.link" @click.stop>READ MORE</a>
+          <span v-if="item.link === '#'" class="read-more">EXPLORE</span>
+        <a v-else class="read-more" :href="item.link" @click.stop>EXPLORE</a>
         </div>
       </div>
     </section>
